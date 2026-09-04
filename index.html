@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invoice Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand-mark" aria-hidden="true">IS</div>
+      <div>
+        <p class="eyebrow">DOCUMENT WORKSPACE</p>
+        <h1>Invoice Studio</h1>
+      </div>
+      <div class="topbar-status"><span class="status-dot"></span> Ready to issue</div>
+    </header>
+
+    <section class="workspace">
+      <aside class="editor-panel" aria-label="Invoice details editor">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">CREATE DOCUMENT</p>
+            <h2>Invoice details</h2>
+          </div>
+          <span class="step-count">01 / 01</span>
+        </div>
+
+        <form id="invoice-form">
+          <fieldset>
+            <legend>From</legend>
+            <label>Business name<input id="business-name" type="text" value="KV Heating and Cooling" readonly></label>
+            <div class="two-col">
+              <label>Email<input id="business-email" type="email" value="kheating@example.com" placeholder="you@example.com"></label>
+              <label>Phone<input id="business-phone" type="tel" value="+61 400 000 000" placeholder="Phone number"></label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Bill to</legend>
+            <label>Client name<input id="client-name" type="text" value="Bill To / Job Address" placeholder="Client name"></label>
+            <label>Client address<textarea id="client-address" rows="5" placeholder="Street, city, country">18 popular st  Rockbank
+, 2 Parkside close leongatha
+, 3 Etherton court hoppers crossing Vic
+27 Marrubak why bonshaw vic
+,26 Test(dummy)</textarea></label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Invoice settings</legend>
+            <div class="two-col">
+              <label>Invoice number<input id="invoice-number" type="text" readonly></label>
+              <label>Issue date<input id="invoice-date" type="date"></label>
+            </div>
+            <label>Payment due<input id="payment-terms" type="text" value="Due on receipt" placeholder="e.g. Net 30"></label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Line item</legend>
+            <label>Description<input id="item-description" type="text" value="Air conditioning installation" placeholder="What are you billing for?"></label>
+            <div class="two-col item-fields">
+              <label>Quantity<input id="item-quantity" type="number" min="0" step="1" value="1"></label>
+              <label>Rate ($)<input id="item-rate" type="number" min="0" step="0.01" value="9200"></label>
+            </div>
+          </fieldset>
+
+          <div class="form-actions">
+            <button class="button button-secondary" type="button" id="new-invoice"><span aria-hidden="true">+</span> New invoice</button>
+            <button class="button button-primary" type="button" id="download-pdf"><span aria-hidden="true">↓</span> Download PDF</button>
+          </div>
+          <p class="helper-text">Your invoice number is saved on this device and advances after each download.</p>
+        </form>
+      </aside>
+
+      <section class="preview-area" aria-label="Invoice preview">
+        <div class="preview-toolbar"><span>LIVE PREVIEW</span><span class="paper-size">A4 · Portrait</span></div>
+        <article class="invoice-paper" id="invoice-paper">
+          <header class="reference-header">
+            <h2 class="preview-business-name">KV Heating and Cooling</h2>
+            <div class="reference-invoice-row">
+              <h1>INVOICE</h1>
+              <div class="reference-meta"><div>Invoice No: <span class="invoice-number-display">001</span></div><div>Date: <span class="preview-date">—</span></div></div>
+            </div>
+          </header>
+
+          <section class="reference-address-block">
+            <h3>Bill To / Job Addresses</h3>
+            <p class="preview-client-address">18 popular st  Rockbank<br>, 2 Parkside close leongatha<br>, 3 Etherton court hoppers crossing Vic<br>27 Marrubak why bonshaw vic</p>
+          </section>
+
+          <table class="line-items">
+            <thead><tr><th>Description of Work</th><th class="align-right">Amount</th></tr></thead>
+            <tbody>
+              <tr><td class="preview-item-description">Air conditioning installation</td><td class="align-right preview-amount">$9200.00</td></tr>
+              <tr class="reference-total-row"><td><strong>TOTAL</strong></td><td class="align-right"><strong>Total due: <span class="preview-total">$9200.00</span></strong></td></tr>
+              <tr class="reference-thanks-row"><td>Thank you for your business.</td><td></td></tr>
+            </tbody>
+          </table>
+        </article>
+      </section>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
