@@ -178,7 +178,25 @@ function initInvoiceApp() {
     renderPreview();
     localStorage.setItem(STORAGE_KEY, String(nextInvoiceNumber() + 1));
     document.title = `Invoice-${invoiceNumber.value || "001"}`;
-    window.print();
+
+    const invoicePaper = document.querySelector("#invoice-paper");
+    const jsPdf = window.jspdf?.jsPDF;
+
+    if (!invoicePaper || !jsPdf || !window.html2canvas) {
+      window.print();
+      return;
+    }
+
+    const pdf = new jsPdf({ orientation: "portrait", unit: "mm", format: "a4" });
+    pdf.html(invoicePaper, {
+      x: 0,
+      y: 0,
+      width: 210,
+      windowWidth: 794,
+      autoPaging: "text",
+      html2canvas: { scale: 1, useCORS: true },
+      callback: (pdfDocument) => pdfDocument.save(`Invoice-${invoiceNumber.value || "001"}.pdf`)
+    });
   });
 
   prepareInvoice();
