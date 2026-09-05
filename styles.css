@@ -16,6 +16,138 @@ button, input, textarea { font: inherit; }
 .topbar { height: 86px; padding: 0 5vw; display: flex; align-items: center; gap: 13px; border-bottom: 1px solid #d9e4dc; background: rgba(255,255,255,.48); }
 .brand-mark, .invoice-symbol { display: grid; place-items: center; background: var(--ink); color: #fff; font-family: "Space Grotesk", sans-serif; font-weight: 700; letter-spacing: -.05em; }
 .brand-mark { width: 37px; height: 37px; border-radius: 10px; font-size: 14px; }
+.custom-header {
+  height: 220px;
+  padding: 10px 24px 12px;
+  background: #02070b;
+  border-bottom: 1px solid #172c37;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 -8px 18px rgba(255,255,255,.04);
+}
+.business-logo-image {
+  display: block;
+  width: min(100%, 720px);
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  border: 0;
+}
+.business-logo {
+  width: min(100%, 1300px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.logo-mark {
+  position: relative;
+  width: min(40vw, 520px);
+  height: min(26vw, 260px);
+  min-width: 320px;
+  min-height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 16px 28px rgba(255, 145, 0, .35));
+}
+.logo-house {
+  position: absolute;
+  inset: 0;
+  display: block;
+  background: linear-gradient(135deg, #f0f4f7 0%, #8f9aa5 15%, #0d1117 20%, #d7e1eb 38%, #f1f5f8 52%, #6d7278 70%, #dfe9f0 100%);
+  clip-path: polygon(0% 67%, 18% 67%, 18% 36%, 31% 36%, 31% 0%, 69% 0%, 69% 36%, 82% 36%, 82% 67%, 100% 67%, 100% 100%, 0% 100%);
+  border: 4px solid rgba(255, 164, 77, .9);
+  border-bottom-width: 10px;
+  box-shadow: 0 0 28px rgba(255, 130, 44, .38), inset 0 0 20px rgba(255,255,255,.38);
+}
+.logo-house::before,
+.logo-house::after {
+  content: "";
+  position: absolute;
+  display: block;
+  background: rgba(19, 22, 29, .76);
+}
+.logo-house::before {
+  left: 36%;
+  top: 30%;
+  width: 28%;
+  height: 34%;
+  border-radius: 12px;
+  box-shadow: inset 0 0 0 3px rgba(255, 175, 75, .7);
+}
+.logo-house::after {
+  right: 12%;
+  top: 11%;
+  width: 16%;
+  height: 33%;
+  border-radius: 4px 4px 0 0;
+  background: linear-gradient(180deg, #dfe6ee 0%, #8aa0b3 100%);
+  box-shadow: 0 0 0 4px rgba(255, 164, 77, .78);
+}
+.logo-kv {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 66%;
+  height: 82%;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(5rem, 11vw, 12rem);
+  font-weight: 800;
+  letter-spacing: -.12em;
+  line-height: .75;
+  background: linear-gradient(180deg, #f1f3f5 0%, #8f9498 12%, #f8fbff 22%, #6a7077 35%, #dfe5eb 48%, #717b84 64%, #ecf1f6 78%, #8d949d 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 18px rgba(255, 255, 255, .15), 0 10px 18px rgba(0, 0, 0, .4);
+}
+.logo-copy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  width: 100%;
+  margin-top: -10px;
+}
+.logo-line {
+  display: inline-block;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 900;
+  letter-spacing: -.05em;
+  line-height: .9;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #ffb14d 0%, #ff7a18 20%, #f6f3ee 42%, #f6f3ee 48%, #ff9a1a 64%, #ff5a14 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: clamp(1.7rem, 3.8vw, 4.5rem);
+  text-shadow: 0 0 18px rgba(255, 126, 0, .22);
+}
+.logo-line.and {
+  background: linear-gradient(90deg, #ebf4ff 0%, #d4e7ff 18%, #c5f6ff 30%, #1ae1ff 45%, #0a9df8 70%, #cfe8ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 18px rgba(70, 191, 255, .3);
+}
+.logo-line.cool {
+  background: linear-gradient(90deg, #67d7ff 0%, #28abff 18%, #dff4ff 40%, #1dc0ff 58%, #0a67d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.logo-line.heat {
+  background: linear-gradient(90deg, #ffc877 0%, #ff9b2f 15%, #f4f0dd 35%, #ff6912 62%, #f1a14f 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
 .eyebrow, .paper-label { margin: 0 0 5px; color: var(--accent-dark); font-size: 10px; font-weight: 700; letter-spacing: .16em; }
 .topbar h1 { margin: 0; font: 600 19px "Space Grotesk", sans-serif; letter-spacing: -.04em; }
 .topbar-status { margin-left: auto; display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 12px; }
@@ -42,6 +174,13 @@ input#business-name[readonly] { color: #111; background: #f1f1f1; cursor: not-al
 .button-secondary { color: var(--ink); background: #e4ebe6; }
 .button span { font-size: 17px; line-height: 10px; }
 .helper-text { margin: 13px 0 0; color: var(--muted); font-size: 10px; line-height: 1.5; }
+.line-items-container { display: flex; flex-direction: column; gap: 18px; }
+.line-item-row { padding: 14px 12px; border: 1px solid var(--line); border-radius: 8px; background: #fafcfb; }
+.line-item-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.line-item-label { color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.remove-line-item { display: inline-grid; place-items: center; width: 24px; height: 24px; padding: 0; border: 0; border-radius: 50%; background: #f4e7e2; color: var(--accent-dark); font-size: 12px; font-weight: 700; line-height: 1; cursor: pointer; }
+.remove-line-item:hover { background: #f0d6cb; }
+.small-button { margin-top: 14px; }
 .preview-area { padding: 43px 5vw 60px; overflow: auto; }
 .preview-toolbar { max-width: 794px; margin: 0 auto 13px; display: flex; justify-content: space-between; color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: .14em; }
 .paper-size { font-weight: 500; letter-spacing: .06em; }

@@ -11,20 +11,14 @@
 </head>
 <body>
   <main class="app-shell">
-    <header class="topbar">
-      <div class="brand-mark" aria-hidden="true">IS</div>
-      <div>
-        <p class="eyebrow">DOCUMENT WORKSPACE</p>
-        <h1>Invoice Studio</h1>
-      </div>
-      <div class="topbar-status"><span class="status-dot"></span> Ready to issue</div>
+    <header class="topbar custom-header">
+      <img class="business-logo-image" src="Logo/KV%20Heating%20and%20Cooling.jpeg" alt="KV Heating and Cooling">
     </header>
 
     <section class="workspace">
       <aside class="editor-panel" aria-label="Invoice details editor">
         <div class="panel-heading">
           <div>
-            <p class="eyebrow">CREATE DOCUMENT</p>
             <h2>Invoice details</h2>
           </div>
           <span class="step-count">01 / 01</span>
@@ -35,7 +29,6 @@
             <legend>From</legend>
             <label>Business name<input id="business-name" type="text" value="KV Heating and Cooling" readonly></label>
             <div class="two-col">
-              <label>Email<input id="business-email" type="email" value="kheating@example.com" placeholder="you@example.com"></label>
               <label>Phone<input id="business-phone" type="tel" value="+61 400 000 000" placeholder="Phone number"></label>
             </div>
           </fieldset>
@@ -56,16 +49,26 @@
               <label>Invoice number<input id="invoice-number" type="text" readonly></label>
               <label>Issue date<input id="invoice-date" type="date"></label>
             </div>
-            <label>Payment due<input id="payment-terms" type="text" value="Due on receipt" placeholder="e.g. Net 30"></label>
           </fieldset>
 
           <fieldset>
             <legend>Line item</legend>
-            <label>Description<input id="item-description" type="text" value="Air conditioning installation" placeholder="What are you billing for?"></label>
-            <div class="two-col item-fields">
-              <label>Quantity<input id="item-quantity" type="number" min="0" step="1" value="1"></label>
-              <label>Rate ($)<input id="item-rate" type="number" min="0" step="0.01" value="9200"></label>
+            <div id="line-items-container" class="line-items-container">
+              <div class="line-item-row">
+                <div class="line-item-header">
+                  <span class="line-item-label">Item</span>
+                  <button class="remove-line-item" type="button" aria-label="Remove line item" title="Remove line item">
+                    <span aria-hidden="true">✕</span>
+                  </button>
+                </div>
+                <label>Description<input id="item-description" class="line-item-description" type="text" value="Air conditioning installation" placeholder="What are you billing for?"></label>
+                <div class="two-col item-fields">
+                  <label>Quantity<input id="item-quantity" class="line-item-quantity" type="number" min="0" step="1" value="1"></label>
+                  <label>Rate ($)<input id="item-rate" class="line-item-rate" type="number" min="0" step="0.01" value="9200"></label>
+                </div>
+              </div>
             </div>
+            <button class="button button-secondary small-button" type="button" id="add-line-item"><span aria-hidden="true">+</span> Add line item</button>
           </fieldset>
 
           <div class="form-actions">
@@ -94,7 +97,7 @@
 
           <table class="line-items">
             <thead><tr><th>Description of Work</th><th class="align-right">Amount</th></tr></thead>
-            <tbody>
+            <tbody class="preview-line-items-body">
               <tr><td class="preview-item-description">Air conditioning installation</td><td class="align-right preview-amount">$9200.00</td></tr>
               <tr class="reference-total-row"><td><strong>TOTAL</strong></td><td class="align-right"><strong>Total due: <span class="preview-total">$9200.00</span></strong></td></tr>
               <tr class="reference-thanks-row"><td>Thank you for your business.</td><td></td></tr>
@@ -104,6 +107,19 @@
       </section>
     </section>
   </main>
+  <script>
+    // Discourage casual copying and common inspection shortcuts.
+    document.addEventListener("contextmenu", (event) => event.preventDefault());
+    document.addEventListener("keydown", (event) => {
+      const inspectShortcut = event.key === "F12" ||
+        (event.ctrlKey && event.shiftKey && ["I", "J", "C"].includes(event.key.toUpperCase())) ||
+        (event.ctrlKey && event.key.toLowerCase() === "u");
+
+      if (inspectShortcut) {
+        event.preventDefault();
+      }
+    });
+  </script>
   <script src="script.js"></script>
 </body>
 </html>
