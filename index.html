@@ -1,4 +1,4 @@
-<!doctype html>
+in this app add <!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -29,7 +29,7 @@
             <legend>From</legend>
             <label>Business name<input id="business-name" type="text" value="KV Heating and Cooling" readonly></label>
             <div class="two-col">
-              <label>Phone<input id="business-phone" type="tel" value="+61 400 000 000" placeholder="Phone number"></label>
+              <label>Phone<input id="business-phone" type="tel" value="+61 459 897 780" placeholder="Phone number" readonly></label>
             </div>
           </fieldset>
 
@@ -48,6 +48,14 @@
             <div class="two-col">
               <label>Invoice number<input id="invoice-number" type="text" readonly></label>
               <label>Issue date<input id="invoice-date" type="date"></label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Payment details</legend>
+            <div class="two-col">
+              <label>BSB<input type="text" value="013347" readonly></label>
+              <label>Account Number<input type="text" value="812000292" readonly></label>
             </div>
           </fieldset>
 
@@ -84,9 +92,10 @@
         <article class="invoice-paper" id="invoice-paper">
           <header class="reference-header">
             <h2 class="preview-business-name">KV Heating and Cooling</h2>
+            <p class="preview-business-phone">+61 459 897 780</p>
             <div class="reference-invoice-row">
               <h1>INVOICE</h1>
-              <div class="reference-meta"><div>Invoice No: <span class="invoice-number-display">001</span></div><div>Date: <span class="preview-date">—</span></div></div>
+              <div class="reference-meta"><div>Invoice No: <span class="invoice-number-display">001</span></div><div>Date: <span class="preview-date">—</span></div><div>BSB: 013347</div><div>Account Number: 812000292</div></div>
             </div>
           </header>
 
