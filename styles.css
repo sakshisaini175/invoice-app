@@ -237,4 +237,35 @@ input#business-name[readonly] { color: #111; background: #f1f1f1; cursor: not-al
 @media (max-width: 900px) { .workspace { grid-template-columns: 1fr; } .editor-panel { padding: 35px 7vw; border-right: 0; } .preview-area { padding: 35px 7vw 50px; } }
 @media (max-width: 560px) { .topbar { padding: 0 6vw; } .topbar-status { display: none; } .editor-panel { padding: 30px 6vw; } .preview-area { padding: 28px 3vw; } .invoice-paper { min-height: auto; padding: 35px 25px; } .invoice-paper h1 { font-size: 35px; } .invoice-header { min-height: 180px; } .bill-to { margin-bottom: 40px; } .invoice-bottom { flex-direction: column-reverse; } .totals { width: 100%; } .paper-footer { margin-top: 45px; } }
 @page { size: A4 portrait; margin: 0; }
-@media print { body { background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; } .topbar, .editor-panel, .preview-toolbar { display: none !important; } .workspace { display: block; min-height: 0; } .preview-area { padding: 0; } .invoice-paper { width: 210mm; max-width: none; min-height: 297mm; padding: 20mm; box-shadow: none; -webkit-print-color-adjust: exact; print-color-adjust: exact; } .invoice-paper .line-items th { background-color: #242424 !important; color: #fff !important; } }
+@media print {
+  html, body {
+    width: 210mm;
+    min-width: 210mm;
+    height: 297mm;
+    min-height: 297mm;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden;
+    background: #fff;
+  }
+
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .topbar, .editor-panel, .preview-toolbar { display: none !important; }
+  .workspace { display: block; width: 210mm; min-height: 0; }
+  .preview-area { width: 210mm; padding: 0; overflow: visible; }
+  .invoice-paper {
+    width: 210mm;
+    height: 297mm;
+    max-width: none;
+    min-height: 0;
+    margin: 0;
+    padding: 20mm;
+    overflow: hidden;
+    box-shadow: none;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+  .invoice-paper .line-items th { background-color: #242424 !important; color: #fff !important; }
+}
