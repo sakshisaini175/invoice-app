@@ -1,58 +1,94 @@
 # Invoice Studio
 
-A static invoice generator built with HTML, CSS, and JavaScript.
+Invoice Studio is a static single-page invoice generator for a service business. It is designed to let a user enter invoice details, preview the output live, add or remove line items, and print the final invoice as a PDF using the browser's print dialog.
+
+## Project architecture
+
+This project is intentionally simple and does not use a framework, build step, backend, or database.
+
+- `index.html`  
+  Contains the page structure for the invoice editor and the live preview panel. The form includes business information, client details, invoice number, issue date, payment details, and editable line items.
+
+- `styles.css`  
+  Holds the entire design system for the app, including the editor layout, preview styling, and print-specific rules for generating a clean A4 invoice.
+
+- `script.js`  
+  Handles all dynamic behavior:
+  - generates the next invoice number
+  - stores the number in `localStorage`
+  - creates and removes line items
+  - recalculates totals as values change
+  - updates the preview in real time
+  - resets the form for a new invoice
+  - triggers the browser print flow for PDF export
+
+- `Logo/`  
+  Contains the branding asset used in the header of the app.
+
+## Core behavior
+
+- Invoice numbering is stored in the browser using `localStorage`, so it increments on the current device only.
+- The app updates the invoice preview immediately as the user edits fields.
+- Each line item includes a description, quantity, and hourly or fixed rate.
+- The total is computed automatically from the line items.
+- The "New invoice" action resets the date and invoice number flow for a new document.
+- The "Download PDF" button does not export a file directly; it opens the browser print dialog where the user selects "Save as PDF".
+
+## File flow
+
+1. The page loads and initializes the invoice app on `DOMContentLoaded`.
+2. `prepareInvoice()` assigns the next invoice number and today's date.
+3. The preview is rendered from the current form values via `renderPreview()`.
+4. Input listeners keep the preview synchronized with user edits.
+5. The PDF action stores the next number and calls `window.print()`.
 
 ## Run locally
 
-From this folder, start a local server:
+From the project folder, start a local web server:
 
 ```powershell
 python -m http.server 8000
 ```
 
-Open <http://localhost:8000>.
+Then open:
 
-## Deploy on Vercel
+```text
+http://localhost:8000
+```
+
+## Deploy to Vercel
+
+Because this is a static site, deployment is straightforward.
 
 ### Option 1: Vercel dashboard
 
-1. Push this project folder to a GitHub, GitLab, or Bitbucket repository.
-2. Sign in at <https://vercel.com>.
+1. Push the project to a GitHub/GitLab/Bitbucket repository.
+2. Sign in to Vercel.
 3. Select **Add New Project** and import the repository.
-4. Use these project settings:
-   - **Framework Preset:** Other
-   - **Root Directory:** `./` (or the folder containing `index.html`)
-   - **Build Command:** leave empty
-   - **Output Directory:** leave empty
-   - **Install Command:** leave empty
-5. Select **Deploy**.
-6. Open the generated `vercel.app` URL.
-
-Vercel serves `index.html` directly. No API, database, environment variables, or build process is required.
+4. Use these settings:
+   - Framework Preset: **Other**
+   - Root Directory: `./`
+   - Build Command: leave empty
+   - Output Directory: leave empty
+   - Install Command: leave empty
+5. Click **Deploy**.
 
 ### Option 2: Vercel CLI
-
-Install and sign in once:
 
 ```powershell
 npm install -g vercel
 vercel login
-```
-
-From this project folder, deploy:
-
-```powershell
 vercel
 ```
 
-Accept the defaults when prompted. For a production deployment:
+For a production deployment:
 
 ```powershell
 vercel --prod
 ```
 
-## Important behavior
+## Notes
 
-- Invoice numbering is stored in each browser's `localStorage`; it is not shared between users or devices.
-- The **Download PDF** action opens the browser print dialog. Select **Save as PDF** and turn off **Headers and footers** to keep the invoice page identical to the reference PDF.
-- Changes pushed to the connected Git repository automatically create a new Vercel deployment.
+- There is no backend, database, or API service in this app.
+- The invoice is designed for print-first output and is optimized for an A4 portrait layout.
+- The current configuration is tailored to a specific HVAC/maintenance business profile but can be adjusted by editing the values in `index.html` and the logic in `script.js`.
